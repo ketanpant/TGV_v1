@@ -33,6 +33,8 @@
       a { color: var(--cream); text-decoration: none; }
       .button { border: 1px solid rgba(255,249,235,.65); border-radius: 999px; padding: 12px 18px; font-size: .92rem; transition: .2s ease; }
       .button:hover { color: var(--ink); background: var(--gold); border-color: var(--gold); }
+      .email { display: inline-block; margin-bottom: 14px; color: var(--gold); font-size: 1rem; font-weight: 700; letter-spacing: .02em; }
+      .email:hover { color: var(--cream); }
       footer { margin-top: 42px; color: rgba(255,249,235,.62); font-size: .78rem; }
     </style>
   </head>
@@ -44,11 +46,12 @@
       <p class="message">Secure everything you love, for the ones you love!!</p>
       <div class="rule"></div>
       <nav aria-label="Contact links">
-        <a class="button" href="mailto:support@thegoodvault.com">Email us</a>
-        <a class="button" href="https://www.instagram.com/team_tgv/" target="_blank" rel="noopener noreferrer">Follow on Instagram</a>
+        <div>
+          <a class="email" href="mailto:support@thegoodvault.com">support@thegoodvault.com</a><br /><br />
+          <a class="button" href="https://www.instagram.com/team_tgv/" target="_blank" rel="noopener noreferrer">Follow on Instagram</a>
+        </div>
       </nav>
       <footer>© 2026 The Good Vault</footer>
     </main>
   </body>
 </html>
-
