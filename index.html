@@ -1,57 +1,477 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="The Good Vault — coming soon." />
-    <title>The Good Vault — Coming Soon</title>
-    <style>
-      :root { --ink: #102a43; --gold: #d6a948; --cream: #fff9eb; }
-      * { box-sizing: border-box; }
-      body {
-        min-height: 100vh; margin: 0; display: grid; place-items: center;
-        padding: 28px; color: var(--cream); background:
-          radial-gradient(circle at 15% 10%, #1b4769 0, transparent 35%),
-          radial-gradient(circle at 88% 82%, #263f58 0, transparent 38%), var(--ink);
-        font-family: Arial, Helvetica, sans-serif;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>The Good Vault — Be ready for what matters most (Coming Soon)</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22 fill=%22none%22><rect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%232563EB%22/><path d=%22M16 9.5C13.5 9.5 10.5 8 7 6C7.8 9.5 8.2 13 8.2 16.5C8.2 22 11.5 26 16 26C20.5 26 23.8 22 23.8 16.5C23.8 13 24.2 9.5 25 6C21.5 8 18.5 9.5 16 9.5Z%22 fill=%22white%22/><circle cx=%2212.5%22 cy=%2214.8%22 r=%223.2%22 fill=%22%230F172A%22/><circle cx=%2219.5%22 cy=%2214.8%22 r=%223.2%22 fill=%22%230F172A%22/><circle cx=%2213.3%22 cy=%2214%22 r=%221.1%22 fill=%22white%22/><circle cx=%2220.3%22 cy=%2214%22 r=%221.1%22 fill=%22white%22/><path d=%22M16 16.5L14.7 19.2C15.4 19.8 16.6 19.8 17.3 19.2L16 16.5Z%22 fill=%22%23F59E0B%22/></svg>" />
+  
+  <!-- Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#F0F6FE',
+              100: '#E0EEFD',
+              200: '#BAD9FA',
+              600: '#1A64DC',
+              700: '#1452B8',
+              800: '#103F8F',
+              900: '#0B234F',
+            }
+          }
+        }
       }
-      main { width: min(650px, 100%); text-align: center; }
-      .mark {
-        width: 116px; height: 116px; margin: 0 auto 28px; border: 4px solid var(--gold);
-        border-radius: 50%; display: grid; place-items: center; position: relative;
-        box-shadow: 0 0 0 10px rgba(214,169,72,.12);
+    }
+  </script>
+
+  <style>
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', Inter, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: #FFFFFF;
+      color: #0E1726;
+      overflow-x: hidden;
+    }
+    ::selection {
+      background-color: #DBEAFE;
+      color: #1E40AF;
+    }
+    /* Floating keyframes for organic hover micro-motion */
+    @keyframes subtleFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-3.5px); }
+    }
+    .float-1 { animation: subtleFloat 5.2s ease-in-out infinite; }
+    .float-2 { animation: subtleFloat 6.1s ease-in-out infinite 0.8s; }
+    .float-3 { animation: subtleFloat 5.6s ease-in-out infinite 0.4s; }
+    .float-4 { animation: subtleFloat 6.4s ease-in-out infinite 1.2s; }
+    /* Minimalist, subtle flowing pulse streams connecting into the central vault */
+    @keyframes pulseStream {
+      from { stroke-dashoffset: 24; }
+      to { stroke-dashoffset: 0; }
+    }
+    .pulse-stream {
+      animation: pulseStream 4.5s linear infinite;
+    }
+    /* Minimalist breathing aura for the central vault */
+    @keyframes vaultBreath {
+      0%, 100% {
+        transform: scale(0.96);
+        opacity: 0;
       }
-      .mark::before, .mark::after { content: ""; position: absolute; background: var(--gold); }
-      .mark::before { width: 68px; height: 7px; border-radius: 8px; }
-      .mark::after { width: 7px; height: 68px; border-radius: 8px; }
-      .wheel { width: 48px; height: 48px; border: 6px solid var(--gold); border-radius: 50%; z-index: 1; background: var(--ink); }
-      .eyebrow { color: var(--gold); font-size: .76rem; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; }
-      h1 { margin: 13px 0 22px; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.7rem, 10vw, 5.3rem); line-height: .95; font-weight: 700; }
-      .message { max-width: 550px; margin: 0 auto; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.25rem, 3.5vw, 1.65rem); line-height: 1.45; }
-      .rule { width: 72px; height: 2px; margin: 34px auto; background: var(--gold); }
-      nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 13px; }
-      a { color: var(--cream); text-decoration: none; }
-      .button { border: 1px solid rgba(255,249,235,.65); border-radius: 999px; padding: 12px 18px; font-size: .92rem; transition: .2s ease; }
-      .button:hover { color: var(--ink); background: var(--gold); border-color: var(--gold); }
-      .email { display: inline-block; margin-bottom: 14px; color: var(--gold); font-size: 1rem; font-weight: 700; letter-spacing: .02em; }
-      .email:hover { color: var(--cream); }
-      footer { margin-top: 42px; color: rgba(255,249,235,.62); font-size: .78rem; }
-    </style>
-  </head>
-  <body>
-    <main>
-      <div class="mark" aria-hidden="true"><div class="wheel"></div></div>
-      <div class="eyebrow">Coming Soon</div>
-      <h1>The Good Vault</h1>
-      <p class="message">Secure everything you love, for the ones you love!!</p>
-      <div class="rule"></div>
-      <nav aria-label="Contact links">
-        <div>
-          <a class="email" href="mailto:support@thegoodvault.com">support@thegoodvault.com</a><br /><br />
-          <a class="button" href="https://www.instagram.com/team_tgv/" target="_blank" rel="noopener noreferrer">Follow on Instagram</a>
+      50% {
+        transform: scale(1.18);
+        opacity: 0.35;
+      }
+    }
+    .vault-aura {
+      animation: vaultBreath 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+  </style>
+</head>
+<body class="w-full min-h-screen flex flex-col justify-between selection:bg-blue-100 selection:text-blue-900 bg-white">
+
+  <!-- Full-Screen Bleed Hero Container -->
+  <div class="relative w-full min-h-[92vh] lg:min-h-screen flex flex-col justify-between bg-white overflow-hidden border-b border-slate-100">
+
+    <!-- Header: Edge-to-Edge Navigation -->
+    <header class="relative z-20 w-full px-6 sm:px-12 lg:px-16 xl:px-24 pt-7 sm:pt-9 pb-4 flex items-center justify-between">
+      <!-- Logo: The Good Vault Owl Guardian Emblem -->
+      <a href="/" class="flex items-center gap-3 group">
+        <div class="size-9 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 shadow-sm flex items-center justify-center p-1.5 border border-blue-400/30 transition-transform group-hover:scale-105 shrink-0">
+          <svg viewBox="0 0 32 32" fill="none" class="w-full h-full select-none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 9.5C13.5 9.5 10.5 8 7 6C7.8 9.5 8.2 13 8.2 16.5C8.2 22 11.5 26 16 26C20.5 26 23.8 22 23.8 16.5C23.8 13 24.2 9.5 25 6C21.5 8 18.5 9.5 16 9.5Z" fill="#FFFFFF"/>
+            <circle cx="12.5" cy="14.8" r="3.2" fill="#0F172A"/>
+            <circle cx="19.5" cy="14.8" r="3.2" fill="#0F172A"/>
+            <circle cx="13.3" cy="14" r="1.1" fill="#FFFFFF"/>
+            <circle cx="20.3" cy="14" r="1.1" fill="#FFFFFF"/>
+            <path d="M16 16.5L14.7 19.2C15.4 19.8 16.6 19.8 17.3 19.2L16 16.5Z" fill="#F59E0B"/>
+            <path d="M14 22.5C14.8 23.3 17.2 23.3 18 22.5" stroke="#93C5FD" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
         </div>
-      </nav>
-      <footer>© 2026 The Good Vault</footer>
-    </main>
-  </body>
+        <span class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">The Good Vault</span>
+      </a>
+
+      <!-- Header Tagline -->
+      <div class="hidden sm:block text-xs sm:text-sm font-medium text-slate-600 tracking-tight">
+        Your family's financial readiness, in your hands.
+      </div>
+    </header>
+
+    <!-- Main Hero: Fluid Screen-Filling Grid -->
+    <div class="relative z-10 flex-1 w-full flex flex-col lg:flex-row items-center justify-between px-6 sm:px-12 lg:px-16 xl:px-24 py-8 lg:py-4">
+
+      <!-- Left Column: Manifesto & Form (Wide, impactful typography) -->
+      <div class="w-full lg:w-1/2 xl:w-5/12 text-left space-y-6 lg:space-y-8 z-10 py-6 lg:py-10">
+
+        <!-- Kicker -->
+        <div class="inline-flex items-center gap-2.5 text-xs font-bold text-blue-600 tracking-widest uppercase">
+          <span>COMING SOON</span>
+          <span class="w-10 h-[2px] bg-blue-600"></span>
+        </div>
+
+        <!-- Main Heading -->
+        <h1 class="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4.25rem] font-extrabold text-slate-900 tracking-[-0.03em] leading-[1.08]">
+          Be ready for<br />
+          what matters most.
+        </h1>
+
+        <!-- Body Copy -->
+        <p class="text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-xl font-normal">
+          The Good Vault is a family financial preparedness platform that helps you securely store, organise and share your important financial details — so your loved ones are always prepared, no matter what.
+        </p>
+
+        <!-- Email Input & Notification Form -->
+        <div class="pt-2">
+          <form id="notify-form" onsubmit="handleNotifySubmit(event)" class="space-y-3 max-w-md">
+            <div class="flex flex-col sm:flex-row gap-2.5">
+              <div class="relative flex-1">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2"/>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                  </svg>
+                </div>
+                <input 
+                  type="email" 
+                  id="notify-email"
+                  required
+                  placeholder="Enter your email address" 
+                  class="w-full pl-10 pr-4 py-3.5 bg-white border border-slate-200/90 rounded-xl text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 shadow-2xs transition"
+                />
+              </div>
+              <button 
+                type="submit" 
+                class="px-7 py-3.5 bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white text-sm font-semibold rounded-xl shadow-xs transition duration-150 flex items-center justify-center shrink-0 cursor-pointer"
+              >
+                Get Notified
+              </button>
+            </div>
+
+            <!-- Privacy Lock Microcopy -->
+            <div class="flex items-center gap-1.5 text-xs text-slate-500 pt-1">
+              <svg class="size-3.5 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              <span>We'll only notify you about our launch. No spam, ever.</span>
+            </div>
+          </form>
+
+          <!-- Success State Banner -->
+          <div id="notify-success" class="hidden p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-left max-w-md animate-in fade-in duration-200">
+            <div class="flex items-center gap-2 text-emerald-800 font-semibold text-sm">
+              <svg class="size-4.5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>You're on the early access list!</span>
+            </div>
+            <p class="text-xs text-emerald-700 mt-1" id="notify-success-desc">
+              We'll email you the moment The Good Vault opens for families.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Ultra-High-Res Family Summit Photography with 4 Crisp Floating Cards -->
+      <div class="w-full lg:w-1/2 xl:w-7/12 lg:h-[84vh] lg:min-h-[640px] flex items-center justify-center lg:justify-end relative mt-8 lg:mt-0">
+        
+        <!-- Composition Container with Matching 16:9 Aspect Ratio -->
+        <div class="relative w-full max-w-2xl lg:max-w-none lg:w-auto lg:h-full flex items-center justify-center">
+          
+          <!-- High-Resolution Mountain Summit Photography -->
+          <img 
+            src="/hero-family.png" 
+            alt="Family sitting on a rocky mountain summit overlooking morning mountain ranges" 
+            class="w-full h-auto lg:w-auto lg:h-full object-contain lg:object-right-bottom select-none" 
+          />
+
+          <!-- Connecting Delicate Flow Streams Converging into Central Vault Hub -->
+          <svg class="absolute inset-0 w-full h-full pointer-events-none select-none z-10" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <!-- Subtle Guide Lines -->
+            <path d="M 18 33 Q 32 29, 47 24" fill="none" stroke="rgba(148, 163, 184, 0.2)" stroke-width="0.25" />
+            <path d="M 38 18 Q 43 20, 48 22" fill="none" stroke="rgba(148, 163, 184, 0.2)" stroke-width="0.25" />
+            <path d="M 68 19 Q 59 20, 52 22" fill="none" stroke="rgba(148, 163, 184, 0.2)" stroke-width="0.25" />
+            <path d="M 78 35 Q 65 30, 53 24" fill="none" stroke="rgba(148, 163, 184, 0.2)" stroke-width="0.25" />
+
+            <!-- Minimalist Flowing Energy Pulse Beams (Hairline dashed cadence) -->
+            <path d="M 18 33 Q 32 29, 47 24" fill="none" stroke="rgba(59, 130, 246, 0.45)" stroke-width="0.35" stroke-dasharray="1.5 5" class="pulse-stream" />
+            <path d="M 38 18 Q 43 20, 48 22" fill="none" stroke="rgba(59, 130, 246, 0.45)" stroke-width="0.35" stroke-dasharray="1.5 5" class="pulse-stream" />
+            <path d="M 68 19 Q 59 20, 52 22" fill="none" stroke="rgba(59, 130, 246, 0.45)" stroke-width="0.35" stroke-dasharray="1.5 5" class="pulse-stream" />
+            <path d="M 78 35 Q 65 30, 53 24" fill="none" stroke="rgba(59, 130, 246, 0.45)" stroke-width="0.35" stroke-dasharray="1.5 5" class="pulse-stream" />
+          </svg>
+
+          <!-- Central Connecting Lock Node (Minimalist, Frosted Glass) -->
+          <div class="absolute left-[50%] top-[24%] -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center cursor-default select-none group">
+            <!-- Subtle Ambient Breathing Aura Ring -->
+            <span class="absolute -inset-2 rounded-2xl border border-blue-400/30 vault-aura pointer-events-none"></span>
+
+            <!-- Frosted Glass Lock Node -->
+            <div class="relative size-10 sm:size-11 rounded-2xl bg-white/95 backdrop-blur-md p-2 shadow-[0_8px_20px_-4px_rgba(15,23,42,0.08)] border border-white/90 flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+              <div class="size-6 sm:size-7 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                <!-- Precision Padlock Icon -->
+                <svg class="size-3.5 sm:size-4 stroke-[2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 1: Real Estate (Left Sky Arc) -->
+          <div class="float-3 absolute left-[4%] sm:left-[8%] top-[24%] sm:top-[28%] z-20 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 sm:p-3.5 shadow-[0_12px_28px_-6px_rgba(0,0,0,0.1),0_6px_12px_-4px_rgba(0,0,0,0.05)] border border-white/80 hover:-translate-y-1 hover:shadow-xl transition-all duration-200 cursor-default select-none min-w-[135px] sm:min-w-[180px]">
+            <div class="flex items-center gap-2 sm:gap-2.5">
+              <div class="size-7 sm:size-9 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center shrink-0">
+                <svg class="size-3.5 sm:size-4.5 stroke-[2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                  <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+              </div>
+              <div class="text-left">
+                <div class="text-[11px] sm:text-sm font-bold text-slate-900 tracking-tight leading-tight">Real Estate</div>
+                <div class="text-[9px] sm:text-[11px] text-slate-400 font-medium">Properties & papers</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Bank Accounts (Upper Left-Center Sky) -->
+          <div class="float-1 absolute left-[26%] sm:left-[30%] top-[8%] sm:top-[11%] z-20 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 sm:p-3.5 shadow-[0_12px_28px_-6px_rgba(0,0,0,0.1),0_6px_12px_-4px_rgba(0,0,0,0.05)] border border-white/80 hover:-translate-y-1 hover:shadow-xl transition-all duration-200 cursor-default select-none min-w-[135px] sm:min-w-[180px]">
+            <div class="flex items-center gap-2 sm:gap-2.5">
+              <div class="size-7 sm:size-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                <svg class="size-3.5 sm:size-4.5 stroke-[2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="3" y1="21" x2="21" y2="21"/>
+                  <line x1="6" y1="18" x2="6" y2="11"/>
+                  <line x1="10" y1="18" x2="10" y2="11"/>
+                  <line x1="14" y1="18" x2="14" y2="11"/>
+                  <line x1="18" y1="18" x2="18" y2="11"/>
+                  <polygon points="12 2 20 7 4 7"/>
+                </svg>
+              </div>
+              <div class="text-left">
+                <div class="text-[11px] sm:text-sm font-bold text-slate-900 tracking-tight leading-tight">Bank Accounts</div>
+                <div class="text-[9px] sm:text-[11px] text-slate-400 font-medium">Accounts & access details</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Insurance (Upper Right-Center Sky) -->
+          <div class="float-2 absolute left-[56%] sm:left-[60%] top-[10%] sm:top-[13%] z-20 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 sm:p-3.5 shadow-[0_12px_28px_-6px_rgba(0,0,0,0.1),0_6px_12px_-4px_rgba(0,0,0,0.05)] border border-white/80 hover:-translate-y-1 hover:shadow-xl transition-all duration-200 cursor-default select-none min-w-[135px] sm:min-w-[180px]">
+            <div class="flex items-center gap-2 sm:gap-2.5">
+              <div class="size-7 sm:size-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                <svg class="size-3.5 sm:size-4.5 stroke-[2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                  <path d="m9 12 2 2 4-4"/>
+                </svg>
+              </div>
+              <div class="text-left">
+                <div class="text-[11px] sm:text-sm font-bold text-slate-900 tracking-tight leading-tight">Insurance</div>
+                <div class="text-[9px] sm:text-[11px] text-slate-400 font-medium">Policies & documents</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Family & Confidantes (Right Sky Arc) -->
+          <div class="float-4 absolute left-[68%] sm:left-[72%] top-[26%] sm:top-[30%] z-20 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 sm:p-3.5 shadow-[0_12px_28px_-6px_rgba(0,0,0,0.1),0_6px_12px_-4px_rgba(0,0,0,0.05)] border border-white/80 hover:-translate-y-1 hover:shadow-xl transition-all duration-200 cursor-default select-none min-w-[135px] sm:min-w-[180px]">
+            <div class="flex items-center gap-2 sm:gap-2.5">
+              <div class="size-7 sm:size-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+                <svg class="size-3.5 sm:size-4.5 stroke-[2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <div class="text-left">
+                <div class="text-[11px] sm:text-sm font-bold text-slate-900 tracking-tight leading-tight">Family & Confidantes</div>
+                <div class="text-[9px] sm:text-[11px] text-slate-400 font-medium">Trusted people & handover</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mid-Section: Screen-Filling Value Proposition & 4 Feature Pillars -->
+  <section class="w-full px-6 sm:px-12 lg:px-16 xl:px-24 py-20 lg:py-32 text-center bg-white">
+
+    <!-- Section Heading -->
+    <div class="max-w-3xl mx-auto space-y-3 mb-16 sm:mb-24">
+      <div class="text-xs sm:text-sm font-bold tracking-widest text-blue-600 uppercase">
+        SIMPLE. SECURE. FOR YOUR FAMILY.
+      </div>
+      <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+        More than just a place to store details.<br class="hidden sm:inline" />
+        It's peace of mind.
+      </h2>
+    </div>
+
+    <!-- 4 Feature Pillars: Generous Grid spanning the screen -->
+    <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 xl:gap-12 text-center">
+
+      <!-- Pillar 1: Secure -->
+      <div class="flex flex-col items-center space-y-3.5">
+        <div class="size-14 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 mb-1 shadow-2xs">
+          <svg class="size-6 stroke-[2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900">Secure</h3>
+        <p class="text-sm text-slate-500 leading-relaxed max-w-[260px]">
+          Your data stays private and protected.
+        </p>
+      </div>
+
+      <!-- Pillar 2: Family Ready -->
+      <div class="flex flex-col items-center space-y-3.5">
+        <div class="size-14 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 mb-1 shadow-2xs">
+          <svg class="size-6 stroke-[2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900">Family Ready</h3>
+        <p class="text-sm text-slate-500 leading-relaxed max-w-[260px]">
+          Make sure your loved ones can access what they need.
+        </p>
+      </div>
+
+      <!-- Pillar 3: All in One Place -->
+      <div class="flex flex-col items-center space-y-3.5">
+        <div class="size-14 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 mb-1 shadow-2xs">
+          <svg class="size-6 stroke-[2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" x2="8" y1="13" y2="13"/>
+            <line x1="16" x2="8" y1="17" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900">All in One Place</h3>
+        <p class="text-sm text-slate-500 leading-relaxed max-w-[260px]">
+          From bank accounts to real estate, keep everything organised.
+        </p>
+      </div>
+
+      <!-- Pillar 4: Built for Real Life -->
+      <div class="flex flex-col items-center space-y-3.5">
+        <div class="size-14 rounded-full bg-rose-50 flex items-center justify-center text-rose-500 mb-1 shadow-2xs">
+          <svg class="size-6 stroke-[2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900">Built for Real Life</h3>
+        <p class="text-sm text-slate-500 leading-relaxed max-w-[260px]">
+          Designed for Indian families, with a simple, non-technical onboarding experience.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Full-Width Footer -->
+  <footer class="w-full border-t border-slate-100 py-10 px-6 sm:px-12 lg:px-16 xl:px-24 bg-white">
+    <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4">
+      
+      <!-- Left: Logo & Tagline -->
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2.5">
+          <div class="size-6 rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 shadow-xs flex items-center justify-center p-1 border border-blue-400/20 shrink-0">
+            <svg viewBox="0 0 32 32" fill="none" class="w-full h-full select-none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 9.5C13.5 9.5 10.5 8 7 6C7.8 9.5 8.2 13 8.2 16.5C8.2 22 11.5 26 16 26C20.5 26 23.8 22 23.8 16.5C23.8 13 24.2 9.5 25 6C21.5 8 18.5 9.5 16 9.5Z" fill="#FFFFFF"/>
+              <circle cx="12.5" cy="14.8" r="3.2" fill="#0F172A"/>
+              <circle cx="19.5" cy="14.8" r="3.2" fill="#0F172A"/>
+              <path d="M16 16.5L14.7 19.2C15.4 19.8 16.6 19.8 17.3 19.2L16 16.5Z" fill="#F59E0B"/>
+            </svg>
+          </div>
+          <span class="text-lg font-bold text-slate-900 tracking-tight">The Good Vault</span>
+        </div>
+        <span class="text-slate-300">|</span>
+        <span class="text-xs sm:text-sm text-slate-500">Family. Financial. Future.</span>
+      </div>
+
+      <!-- Right: Social Links -->
+      <div class="flex items-center gap-3 text-slate-400 text-xs sm:text-sm">
+        <span>Follow our journey</span>
+        <div class="flex items-center gap-3">
+          <!-- Instagram -->
+          <a href="#" class="hover:text-slate-700 transition" aria-label="Instagram">
+            <svg class="size-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Client-side Interactive Logic for Early Access -->
+  <script>
+    function handleNotifySubmit(e) {
+      e.preventDefault();
+      const emailInput = document.getElementById('notify-email');
+      const email = emailInput.value.trim().toLowerCase();
+      if (!email) return;
+
+      try {
+        const stored = JSON.parse(localStorage.getItem('the_good_vault_waitlist') || '[]');
+        if (!stored.includes(email)) {
+          stored.push(email);
+          localStorage.setItem('the_good_vault_waitlist', JSON.stringify(stored));
+        }
+      } catch (err) {}
+
+      document.getElementById('notify-form').classList.add('hidden');
+      const success = document.getElementById('notify-success');
+      success.classList.remove('hidden');
+      document.getElementById('notify-success-desc').textContent = 
+        `We've saved your spot (${email}). You'll be the first to know when The Good Vault launches.`;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      try {
+        const stored = JSON.parse(localStorage.getItem('the_good_vault_waitlist') || '[]');
+        if (stored.length > 0) {
+          const email = stored[stored.length - 1];
+          document.getElementById('notify-form').classList.add('hidden');
+          const success = document.getElementById('notify-success');
+          success.classList.remove('hidden');
+          document.getElementById('notify-success-desc').textContent = 
+            `You are already signed up for early access (${email}). We'll notify you as soon as The Good Vault launches.`;
+        }
+      } catch (err) {}
+    });
+  </script>
+
+</body>
 </html>
